@@ -17,9 +17,13 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	/**
 	 * 
 	 * @param filepath a full or partial path to file with symptom strings in it, one per line
+	 * @throws IOException 
 	 */
-	public ReadSymptomDataFromFile (String filepath) {
+	public ReadSymptomDataFromFile (String filepath) throws IOException {
 		this.filepath = filepath;
+			// first get input
+			BufferedReader reader = new BufferedReader(new FileReader("symptoms.txt"));
+			String line = reader.readLine();
 	}
 	
 	@Override
