@@ -1,10 +1,10 @@
 package com.hemebiotech.analytics;
 
-public class FileWriter {
+public class SymptomsFileWriter {
 	// next generate output
 
 	public void fileWriter() {
-		FileWriter writer = new FileWriter("result.out");
+		SymptomsFileWriter writer = new SymptomsFileWriter("result.out");
 		writer.write("headache: " + headacheCount + "\n");
 		writer.write("rash: " + rashCount + "\n");
 		writer.write("dialated pupils: " + pupilCount + "\n");
