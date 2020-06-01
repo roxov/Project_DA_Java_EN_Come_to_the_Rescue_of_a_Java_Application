@@ -1,13 +1,16 @@
 package com.hemebiotech.analytics;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Simple brute force implementation
+ * 
+ * Read the filepath given for the file to read and return a list of symptoms,
+ * with duplications.
  *
  */
 public class ReadSymptomDataFromFile implements ISymptomReader {
@@ -18,7 +21,7 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	 * 
 	 * @param filepath a full or partial path to file with symptom strings in it,
 	 *                 one per line
-	 * @throws IOException
+	 *
 	 */
 
 	public ReadSymptomDataFromFile(String filepath) {
@@ -39,6 +42,8 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 					line = reader.readLine();
 				}
 				reader.close();
+			} catch (FileNotFoundException e) {
+				System.out.println("Le chemin du fichier n'a pas été trouvé.");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

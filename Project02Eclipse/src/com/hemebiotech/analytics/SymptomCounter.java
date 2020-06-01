@@ -4,6 +4,16 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.TreeMap;
 
+/**
+ * 
+ * Initialize at 1 a new <key-value> in a sorted Map, each time a new symptom
+ * appears. Then, add 1 to the value, each time the symptoms appears again.
+ *
+ * @param symptomsList, the list extracted from file with
+ *                      ReadSymptomDataFromFile.
+ * @return result, a sorted Map with symptoms and their occurence.
+ */
+
 public class SymptomCounter {
 
 	public TreeMap<String, Integer> counter(List<String> symptomsList) {
