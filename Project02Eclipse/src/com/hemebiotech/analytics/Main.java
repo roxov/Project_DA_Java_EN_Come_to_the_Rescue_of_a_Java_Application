@@ -10,6 +10,10 @@ public class Main {
 		
 		List<String> symptomsList = new ReadSymptomDataFromFile("Project02Eclipse/resources/symptoms.txt").GetSymptoms();
 		TreeMap<String,Integer> sortedSymptomsMap = new SymptomCounter().counter(symptomsList);		
+		
+			
+		
+		System.out.println(sortedSymptomsMap.size());
 		System.out.println(sortedSymptomsMap);
 		
 	}
