@@ -6,41 +6,31 @@ import java.util.List;
 import java.util.TreeMap;
 
 public class Main {
-
-	public static void main(String[] args) {
-		/**
-		 * 
-		 * Here enter the filepath of the file which contains symptoms.
-		 * 
-		 */
-		ISymptomReader symptomReader = new ReadSymptomDataFromFile("Project02Eclipse/resources/symptoms.txt");
+	public static final String FILE_TO_READ = "Project02Eclipse/resources/symptoms.txt";
+	public static final String FILE_TO_WRITE = "Project02Eclipse/result.out";
+	
+	public static void main(String[] args) throws Exception {
+		
+		
+		ISymptomReader symptomReader = new ReadSymptomDataFromFile(FILE_TO_READ);
 		
 		
 		List<String> symptomsList;
-		try {
+		try (ISymptomWriter writer = new SymptomsFileWriter(FILE_TO_WRITE)){
 			symptomsList = symptomReader.GetSymptoms();
 			
 			TreeMap<String, Integer> sortedSymptomsMap = new SymptomCounter().counter(symptomsList);
 
-			/**
-			 * 
-			 * Here enter the filepath and the name of the file for results and occurences.
-			 * 
-			 */
-			new SymptomsFileWriter("Project02Eclipse/result.out").createSymptomsFile(sortedSymptomsMap);
-
-			System.out.println(sortedSymptomsMap);
+			writer.createSymptomsFile(sortedSymptomsMap);
+			
 		} catch (FileNotFoundException e) {
 			System.out.println("Le chemin du fichier n'a pas été trouvé.");
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-		//	reader.close();
-		}
-		
-		
-		
+				symptomReader.close();
+		}	
 	}
 
 }

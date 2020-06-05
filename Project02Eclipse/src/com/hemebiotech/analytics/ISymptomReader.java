@@ -20,4 +20,5 @@ public interface ISymptomReader {
 	 * @throws IOException 
 	 */
 	List<String> GetSymptoms() throws FileNotFoundException, IOException;
+	void close() throws IOException;
 }

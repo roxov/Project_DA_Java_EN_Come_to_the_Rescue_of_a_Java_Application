@@ -3,7 +3,6 @@ package com.hemebiotech.analytics;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -16,6 +15,7 @@ import java.util.Set;
 
 public class SymptomsFileWriter implements ISymptomWriter {
 	private String filepath;
+	private FileWriter writer;
 
 	/**
 	 * 
@@ -27,27 +27,28 @@ public class SymptomsFileWriter implements ISymptomWriter {
 		this.filepath = filepath;
 	}
 
-/**
- * 
- * Create the final file and write in it symptoms and occurences.
- * 
- * @param symptomsMap, the sorted Map obtain with the SymptomCounter.
- * @throws IOException 
- */
-	
+	/**
+	 * 
+	 * Create the final file and write in it symptoms and occurences.
+	 * 
+	 * @param symptomsMap, the sorted Map obtain with the SymptomCounter.
+	 * @throws IOException
+	 */
+
 	public void createSymptomsFile(Map<String, Integer> symptomsMap) throws IOException {
+		// On ne peut pas itérer sur une Map, il faut créer un Set.
 		Set<Entry<String, Integer>> setEntry = symptomsMap.entrySet();
-		Iterator<Map.Entry<String, Integer>> itEntry = setEntry.iterator();
+		writer = new FileWriter(new File(filepath));
 
+		for (Entry<String, Integer> entry : setEntry) {
+			writer.write(entry.getKey() + " = " + entry.getValue() + "\n");
+		}
+		writer.flush();
 
-		FileWriter writer = new FileWriter(new File(filepath));
-			while (itEntry.hasNext()) {
-				Map.Entry<String, Integer> entry = itEntry.next();
-				writer.write(entry.getKey() + " = " + entry.getValue() + "\n");
-			}
+	}
 
-			writer.flush();
-			writer.close();
-
+	@Override
+	public void close() throws Exception {
+		writer.close();
 	}
 }
