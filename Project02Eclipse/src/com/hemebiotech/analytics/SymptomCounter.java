@@ -14,7 +14,7 @@ import java.util.TreeMap;
  * @return result, a sorted Map with symptoms and their occurence.
  */
 
-public class SymptomCounter {
+public class SymptomCounter implements ISymptomCounter {
 
 	public TreeMap<String, Integer> counter(List<String> symptomsList) {
 		TreeMap<String, Integer> result = new TreeMap<String, Integer>();
