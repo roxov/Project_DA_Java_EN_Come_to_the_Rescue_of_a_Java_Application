@@ -9,13 +9,12 @@ import java.util.Set;
 
 /**
  * Create a new file (or erase the existing one) with the filepath given in
- * Main. Write a symptom with its occurence on each line.
+ * Main. Write a symptom with its occurrence on each line.
  * 
  */
 
 public class SymptomsFileWriter implements ISymptomWriter {
 	private String filepath;
-	private FileWriter writer;
 
 	/**
 	 * 
@@ -38,17 +37,13 @@ public class SymptomsFileWriter implements ISymptomWriter {
 	public void createSymptomsFile(Map<String, Integer> symptomsMap) throws IOException {
 		// On ne peut pas itérer sur une Map, il faut créer un Set.
 		Set<Entry<String, Integer>> setEntry = symptomsMap.entrySet();
-		writer = new FileWriter(new File(filepath));
 
-		for (Entry<String, Integer> entry : setEntry) {
-			writer.write(entry.getKey() + " = " + entry.getValue() + "\n");
+		try (FileWriter writer = new FileWriter(new File(filepath));) {
+
+			for (Entry<String, Integer> entry : setEntry) {
+				writer.write(entry.getKey() + " = " + entry.getValue() + "\n");
+			}
+			writer.flush();
 		}
-		writer.flush();
-
-	}
-
-	@Override
-	public void close() throws Exception {
-		writer.close();
 	}
 }

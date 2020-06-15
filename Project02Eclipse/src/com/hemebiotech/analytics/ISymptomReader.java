@@ -16,9 +16,9 @@ public interface ISymptomReader {
 	 * 
 	 * @return a raw listing of all Symptoms obtained from a data source, duplicates
 	 *         are possible/probable
-	 * @throws FileNotFoundException 
-	 * @throws IOException 
+	 * @throws FileNotFoundException
+	 * @throws IOException
 	 */
-	List<String> GetSymptoms() throws FileNotFoundException, IOException;
-	void close() throws IOException;
+	List<String> GetSymptoms() throws IOException;
+
 }

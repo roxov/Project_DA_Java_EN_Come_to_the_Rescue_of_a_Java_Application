@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * Write symptom data from a sorted Map in a new file.
- * One symptom and its occurence per line.
+ * Write symptom data from a sorted Map in a new file. One symptom and its
+ * occurence per line.
  * 
  */
 
-public interface ISymptomWriter extends AutoCloseable {
+public interface ISymptomWriter {
 	/**
 	 * 
 	 * Create the final file and write in it symptoms and occurences.

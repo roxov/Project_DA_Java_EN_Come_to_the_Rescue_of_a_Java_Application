@@ -1,7 +1,6 @@
 package com.hemebiotech.analytics;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,7 +15,6 @@ import java.util.List;
 public class ReadSymptomDataFromFile implements ISymptomReader {
 
 	private String filepath;
-	private BufferedReader reader;
 
 	/**
 	 * 
@@ -33,7 +31,6 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	 * 
 	 * @return a raw listing of all Symptoms obtained from a data source, duplicates
 	 *         are possible/probable
-	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */
 	@Override
@@ -41,18 +38,15 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 		ArrayList<String> result = new ArrayList<String>();
 
 		if (filepath != null) {
-			reader = new BufferedReader(new FileReader(filepath));
-			String line = reader.readLine();
 
-			while (line != null) {
-				result.add(line);
-				line = reader.readLine();
+			try (BufferedReader reader = new BufferedReader(new FileReader(filepath));) {
+				String line = reader.readLine();
+				while (line != null) {
+					result.add(line);
+					line = reader.readLine();
+				}
 			}
 		}
 		return result;
-	}
-
-	public void close() throws IOException {
-		reader.close();
 	}
 }

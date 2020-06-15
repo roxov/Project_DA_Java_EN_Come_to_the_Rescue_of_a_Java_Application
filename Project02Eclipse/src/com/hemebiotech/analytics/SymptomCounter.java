@@ -6,7 +6,7 @@ import java.util.TreeMap;
 /**
  * 
  * Take a list of symptoms with duplications and write symptoms and their
- * occurence (no duplication) in a sorted Map.
+ * occurrence (no duplication) in a sorted Map.
  * 
  */
 
