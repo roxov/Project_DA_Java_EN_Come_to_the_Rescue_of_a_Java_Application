@@ -37,8 +37,6 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	public List<String> GetSymptoms() throws IOException {
 		ArrayList<String> result = new ArrayList<String>();
 
-		if (filepath != null) {
-
 			try (BufferedReader reader = new BufferedReader(new FileReader(filepath));) {
 				String line = reader.readLine();
 				while (line != null) {
@@ -46,7 +44,6 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 					line = reader.readLine();
 				}
 			}
-		}
 		return result;
 	}
 }

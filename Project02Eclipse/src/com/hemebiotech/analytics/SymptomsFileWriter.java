@@ -35,11 +35,11 @@ public class SymptomsFileWriter implements ISymptomWriter {
 	 */
 
 	public void createSymptomsFile(Map<String, Integer> symptomsMap) throws IOException {
-		// On ne peut pas itérer sur une Map, il faut créer un Set.
-		Set<Entry<String, Integer>> setEntry = symptomsMap.entrySet();
 
 		try (FileWriter writer = new FileWriter(new File(filepath));) {
-
+			// On ne peut pas itérer sur une Map, il faut créer un Set.
+			Set<Entry<String, Integer>> setEntry = symptomsMap.entrySet();
+			
 			for (Entry<String, Integer> entry : setEntry) {
 				writer.write(entry.getKey() + " = " + entry.getValue() + "\n");
 			}
